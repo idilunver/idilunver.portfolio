@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Mail, ExternalLink, Code2, Terminal, Cpu, Download,
-  Menu, X, Database, Wrench, Award, MapPin
+  Mail, ExternalLink, Code2, Download,
+  Menu, X, MapPin
 } from 'lucide-react';
-import { FaGithub, FaLinkedin, FaFlutter } from 'react-icons/fa6';
-import { SiPython, SiReact, SiTypescript, SiFlask, SiPostgresql, SiFirebase, SiDocker, SiMysql, SiEspressif } from 'react-icons/si';
+import { 
+  FaReact, FaPython, FaPhp, FaHtml5, FaGitAlt, FaGithub, FaDocker, FaLinkedin, FaCode, FaMicrochip
+} from 'react-icons/fa';
+import { 
+  SiJavascript, SiTypescript, SiMysql, SiPostgresql, SiCplusplus, SiFlutter 
+} from 'react-icons/si';
 
 /* ───────── NAVBAR ───────── */
 function Navbar() {
@@ -18,6 +22,7 @@ function Navbar() {
   }, []);
 
   const links = [
+    { href: '#hero', label: 'Ana Sayfa' },
     { href: '#about', label: 'Hakkımda' },
     { href: '#skills', label: 'Yetenekler' },
     { href: '#experience', label: 'Deneyim' },
@@ -28,7 +33,7 @@ function Navbar() {
   return (
     <nav className={`glass-panel navbar${scrolled ? ' navbar-scrolled' : ''}`}>
       <div className="navbar-inner">
-        <a href="#hero" className="gradient-text nav-logo">İdil.dev</a>
+        <a href="#hero" className="gradient-text nav-logo">İdil Unver.dev</a>
 
         {/* Desktop */}
         <div className="nav-links-desktop">
@@ -62,36 +67,96 @@ function Navbar() {
 /* ───────── HERO ───────── */
 function Hero() {
   return (
-    <section id="hero" style={{ paddingTop: '9rem', textAlign: 'center', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} className="container animate-fade-in">
-      <div className="hero-badge">
-        <MapPin size={14} /> Ankara, Türkiye
-      </div>
+    <section
+      id="hero"
+      className="container animate-fade-in"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        paddingTop: '7rem',
+      }}
+    >
+      <p
+        style={{
+          color: 'var(--text-muted)',
+          fontSize: '0.95rem',
+          marginBottom: '1rem',
+          letterSpacing: '0.08em',
+          textTransform: 'uppercase',
+        }}
+      >
+        Computer Engineer · Full-Stack &amp; IoT Developer
+      </p>
+
       <h1 className="hero-title">
         Merhaba, ben <span className="gradient-text">İdil Ünver</span>
       </h1>
-      <h2 className="hero-subtitle">
-        Yazılım Mühendisi · Full-Stack & IoT Geliştirici
-      </h2>
-      <p className="hero-desc">
-        Gömülü donanımları bulut bağlantılı arayüzlerle entegre ederek uçtan uca sistemler tasarlıyorum.
-        React, Flutter, Python ve IoT teknolojileriyle ölçeklenebilir, kullanıcı odaklı çözümler üretiyorum.
+
+      <p
+        className="hero-desc"
+        style={{
+          maxWidth: '720px',
+          margin: '1.5rem auto 0',
+        }}
+      >
+        Modern web uygulamaları, veritabanı sistemleri ve IoT çözümleri
+        geliştiriyorum. Kullanıcı odaklı arayüzleri güçlü backend
+        mimarileri ve akıllı sistemlerle birleştirerek uçtan uca çözümler
+        üretmeye odaklanıyorum.
       </p>
+
       <div className="hero-btns">
         <a href="#projects" className="btn btn-primary">
-          <ExternalLink size={18} /> Projelerimi Gör
+          <ExternalLink size={18} />
+          Projelerimi Gör
         </a>
-        <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-          <Download size={18} /> CV İndir
+
+        <a
+          href="#contact"
+          className="btn btn-outline"
+        >
+          <Mail size={18} />
+          İletişime Geç
+        </a>
+
+        <a
+          href="/cv.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-outline"
+        >
+          <Download size={18} />
+          CV İndir
         </a>
       </div>
+
       <div className="hero-socials">
-        <a href="https://github.com/idilunver" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <a
+          href="https://github.com/idilunver"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
           <FaGithub size={22} />
         </a>
-        <a href="https://linkedin.com/in/idil-unver" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+
+        <a
+          href="https://linkedin.com/in/idil-unver"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
           <FaLinkedin size={22} />
         </a>
-        <a href="mailto:unveridil@gmail.com" aria-label="E-posta">
+
+        <a
+          href="mailto:unveridil@gmail.com"
+          aria-label="E-posta"
+        >
           <Mail size={22} />
         </a>
       </div>
@@ -105,31 +170,52 @@ function About() {
     <section id="about" className="container">
       <h2 className="section-title gradient-text">Hakkımda</h2>
       <div className="glass-panel about-grid">
-        {/* Profil fotoğrafı */}
-        <div className="about-photo-wrapper">
-          <img src="/photo.jpg" alt="İdil Ünver" className="about-photo" />
-        </div>
-
-        {/* Metin */}
         <div className="about-text">
-          <h3 className="about-heading">Yazılım Mühendisliği &amp; Sistem Tasarımı</h3>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '1rem' }}>
-            Ostim Teknik Üniversitesi Bilgisayar Mühendisliği (İngilizce) öğrencisiyim (GNO: 3.10/4.00).
-            Full-stack mobil/web geliştirme ve IoT ekosistemleri üzerine uzmanlaşıyorum.
-          </p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '2rem' }}>
-            Yazılım mühendisliği, veritabanları, DevOps ve sistem yönetimi perspektifiyle ölçeklenebilir
-            mimariler oluşturmaya odaklıyım. İngilizce profesyonel çalışma yetkinliğine sahibim.
+          <h3 className="about-heading">
+            Yazılım Geliştirme &amp; Sistem Tasarımı
+          </h3>
+
+          <p
+            style={{
+              color: 'var(--text-muted)',
+              fontSize: '1.05rem',
+              lineHeight: 1.8,
+              marginBottom: '1rem',
+            }}
+          >
+            Ostim Teknik Üniversitesi Bilgisayar Mühendisliği mezunuyum. 
+            Full-stack web ve mobil geliştirme, veritabanları ve IoT
+            sistemleri üzerine çalışıyorum. Farklı teknolojileri bir araya
+            getirerek gerçek problemlere yönelik uçtan uca çözümler
+            geliştirmekten keyif alıyorum.
           </p>
 
-          <div className="about-tags">
-            <span className="about-tag">🎓 Bilgisayar Mühendisliği</span>
-            <span className="about-tag">📍 Ankara, Türkiye</span>
-            <span className="about-tag">🌐 İngilizce & Türkçe</span>
-          </div>
+          <p
+            style={{
+              color: 'var(--text-muted)',
+              fontSize: '1.05rem',
+              lineHeight: 1.8,
+              marginBottom: '2rem',
+            }}
+          >
+            Özellikle React, Python, PHP, MySQL, PostgreSQL ve IoT
+            teknolojileriyle çalışıyorum. Bunun yanında backend mimarileri,
+            veri yönetimi ve sistem altyapıları konularında kendimi
+            geliştirmeye devam ediyorum.
+          </p>
 
-          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ marginTop: '2rem', display: 'inline-flex' }}>
-            <Download size={18} /> Özgeçmişimi İndir
+          <a
+            href="/cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary"
+            style={{
+              marginTop: '2rem',
+              display: 'inline-flex',
+            }}
+          >
+            <Download size={18} />
+            Özgeçmişimi İndir
           </a>
         </div>
       </div>
@@ -138,86 +224,61 @@ function About() {
 }
 
 /* ───────── SKILLS ───────── */
-const skillGroups = [
-  {
-    icon: <Terminal size={28} />,
-    title: 'Frontend & Mobil',
-    desc: 'Kullanıcı dostu, erişilebilir ve modern arayüzler.',
-    tags: [
-      { label: 'React / Next.js', Icon: SiReact },
-      { label: 'TypeScript', Icon: SiTypescript },
-      { label: 'Flutter', Icon: FaFlutter },
-      { label: 'Material UI', Icon: null },
-    ],
-  },
-  {
-    icon: <Database size={28} />,
-    title: 'Backend & Veritabanları',
-    desc: 'Güvenilir, ölçeklenebilir API ve veri mimarileri.',
-    tags: [
-      { label: 'Python / Flask', Icon: SiPython },
-      { label: 'Firebase', Icon: SiFirebase },
-      { label: 'PostgreSQL', Icon: SiPostgresql },
-      { label: 'MySQL', Icon: SiMysql },
-    ],
-  },
-  {
-    icon: <Cpu size={28} />,
-    title: 'Gömülü & IoT',
-    desc: 'Uçtan uca sensör entegrasyonlu akıllı sistemler.',
-    tags: [
-      { label: 'ESP32', Icon: SiEspressif },
-      { label: 'C / C++', Icon: null },
-      { label: 'I2C / GPIO', Icon: null },
-      { label: 'Sensör & Röle', Icon: null },
-    ],
-  },
-  {
-    icon: <Wrench size={28} />,
-    title: 'DevOps & Araçlar',
-    desc: 'Otomasyon, CI/CD ve altyapı yönetimi.',
-    tags: [
-      { label: 'Git / GitHub Actions', Icon: null },
-      { label: 'Docker', Icon: SiDocker },
-      { label: 'VMware', Icon: null },
-      { label: 'PHP', Icon: null },
-    ],
-  },
-];
-
 function Skills() {
+  const skillCategories = [
+    {
+      title: "Frontend & Mobile",
+      skills: [
+        { name: "React", icon: <FaReact color="#61DAFB" /> },
+        { name: "JavaScript", icon: <SiJavascript color="#F7DF1E" /> },
+        { name: "TypeScript", icon: <SiTypescript color="#3178C6" /> },
+        { name: "Flutter", icon: <SiFlutter color="#02569B" /> },
+        { name: "HTML5 / CSS3", icon: <FaHtml5 color="#E34F26" /> },
+      ]
+    },
+    {
+      title: "Backend & Database",
+      skills: [
+        { name: "Python", icon: <FaPython color="#3776AB" /> },
+        { name: "PHP", icon: <FaPhp color="#777BB4" /> },
+        { name: "C++", icon: <SiCplusplus color="#00599C" /> },
+        { name: "C#", icon: <FaCode color="#239120" /> },
+        { name: "MySQL", icon: <SiMysql color="#4479A1" /> },
+        { name: "PostgreSQL", icon: <SiPostgresql color="#4169E1" /> },
+      ]
+    },
+    {
+      title: "IoT & Embedded",
+      skills: [
+        { name: "ESP32", icon: <FaMicrochip color="#E7352C" /> },
+        { name: "Gömülü Sistemler", icon: <FaMicrochip color="#A8B9CC" /> },
+      ]
+    },
+    {
+      title: "Tools & DevOps",
+      skills: [
+        { name: "Git", icon: <FaGitAlt color="#F05032" /> },
+        { name: "GitHub", icon: <FaGithub color="#FFFFFF" /> },
+        { name: "Docker", icon: <FaDocker color="#2496ED" /> },
+      ]
+    }
+  ];
+
   return (
     <section id="skills" className="container">
-      <h2 className="section-title gradient-text">Yetenekler & Teknolojiler</h2>
-      <div className="skills-cards-grid">
-        {skillGroups.map(g => (
-          <div key={g.title} className="glass-panel card">
-            <div className="gradient-text skill-icon">{g.icon}</div>
-            <h3 className="skill-card-title">{g.title}</h3>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>{g.desc}</p>
-            <div className="skills-grid">
-              {g.tags.map(t => (
-                <span key={t.label} className="skill-tag">
-                  {t.Icon && <t.Icon style={{ display: 'inline', marginRight: '4px', verticalAlign: 'middle' }} />}
-                  {t.label}
-                </span>
+      <h2 className="section-title gradient-text">Yetenekler &amp; Teknolojiler</h2>
+      <div className="skills-category-grid">
+        {skillCategories.map((cat, idx) => (
+          <div key={idx} className="glass-panel skill-category-card">
+            <h3 className="skill-category-title">{cat.title}</h3>
+            <div className="skills-icon-grid">
+              {cat.skills.map((s, i) => (
+                <div key={i} className="skill-icon-item">
+                  <span className="skill-icon">{s.icon}</span>
+                  <span className="skill-name">{s.name}</span>
+                </div>
               ))}
             </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Sertifikalar */}
-      <div className="certs-row">
-        {[
-          { name: 'Machine Learning in Python', org: 'DataCamp', year: '2024' },
-          { name: 'Data Scientist with Python', org: 'DataCamp', year: '2024' },
-          { name: 'Python Essentials', org: 'Cisco', year: '2023' },
-        ].map(c => (
-          <div key={c.name} className="glass-panel cert-card">
-            <Award size={20} className="gradient-text" style={{ marginBottom: '0.5rem' }} />
-            <div className="cert-name">{c.name}</div>
-            <div className="cert-meta">{c.org} · {c.year}</div>
           </div>
         ))}
       </div>
@@ -323,7 +384,6 @@ function Projects() {
       <div className="projects-grid">
         {projects.map((p, idx) => (
           <div key={idx} className="glass-panel card project-card">
-            {/* Renk bantı */}
             <div className="project-banner" style={{ background: `linear-gradient(135deg, ${p.color}33, ${p.color}11)`, borderBottom: `1px solid ${p.color}44` }}>
               <Code2 size={40} style={{ opacity: 0.25, color: p.color }} />
             </div>
@@ -359,77 +419,17 @@ function Projects() {
 
 /* ───────── FOOTER / CONTACT ───────── */
 function Footer() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | success | error
-  const [error, setError] = useState('');
-
-  // Configure your Formspree endpoint in an .env file as VITE_FORMSPREE_ENDPOINT
-  // e.g. VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/yourFormId
-  const FORM_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/yourFormId';
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setStatus('sending');
-    setError('');
-
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        setStatus('success');
-        setName(''); setEmail(''); setMessage('');
-      } else {
-        setStatus('error');
-        setError(data?.error || 'Gönderim başarısız oldu. Lütfen daha sonra tekrar deneyin.');
-      }
-    } catch (err) {
-      setStatus('error');
-      setError(err.message || 'Ağ hatası.');
-    }
-  }
-
   return (
     <footer id="contact" className="footer">
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="section-title gradient-text" style={{ marginBottom: '1rem' }}>Birlikte Çalışalım</h2>
-        <p style={{ color: 'var(--text-muted)', maxWidth: '520px', margin: '0 auto 1.5rem auto', fontSize: '1.05rem' }}>
-          Yeni fırsatlara ve projelere her zaman açığım. Aşağıdaki formu doldurarak bana doğrudan mesaj gönderebilirsin.
+        <p style={{ color: 'var(--text-muted)', maxWidth: '520px', margin: '0 auto 2.5rem auto', fontSize: '1.05rem' }}>
+          Yeni fırsatlara ve projelere her zaman açığım. Sorularınız veya proje fikirleriniz için bana ulaşabilirsiniz.
         </p>
 
-        <form className="contact-form glass-panel" onSubmit={handleSubmit} style={{ maxWidth: 720, margin: '0 auto 2rem auto', textAlign: 'left' }}>
-          <label style={{ display: 'block', marginBottom: 8 }}>İsim</label>
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
-
-          <label style={{ display: 'block', marginTop: 12, marginBottom: 8 }}>E-posta</label>
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-
-          <label style={{ display: 'block', marginTop: 12, marginBottom: 8 }}>Mesaj</label>
-          <textarea value={message} onChange={e => setMessage(e.target.value)} rows={6} required />
-
-          <div style={{ display: 'flex', gap: '0.75rem', marginTop: 12, alignItems: 'center' }}>
-            <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Gönderiliyor...' : 'Gönder'}
-            </button>
-            <a href="mailto:unveridil@gmail.com" className="btn btn-outline">
-              <Mail size={16} style={{ marginRight: 8 }} /> E-posta ile gönder
-            </a>
-          </div>
-
-          {status === 'success' && <div className="notice success" style={{ marginTop: 12 }}>Mesajın alındı — en kısa sürede döneceğim.</div>}
-          {status === 'error' && <div className="notice error" style={{ marginTop: 12 }}>{error}</div>}
-
-          <div style={{ marginTop: 14, color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-            Not: Formspree kullanmak için <strong>VITE_FORMSPREE_ENDPOINT</strong> ortam değişkenine kendi Formspree endpoint'ini
-            (https://formspree.io/f/yourFormId) ekle. Alternatif olarak `FORM_ENDPOINT` değişkenini doğrudan koda yazabilirsin.
-          </div>
-        </form>
+        <a href="mailto:unveridil@gmail.com" className="btn btn-primary" style={{ marginBottom: '2.5rem', display: 'inline-flex' }}>
+          <Mail size={18} /> unveridil@gmail.com
+        </a>
 
         <div className="footer-socials">
           <a href="https://github.com/idilunver" target="_blank" rel="noopener noreferrer" className="glass-panel footer-icon" aria-label="GitHub">
@@ -443,7 +443,7 @@ function Footer() {
           </a>
         </div>
 
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '2.5rem' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '3rem' }}>
           &copy; {new Date().getFullYear()} İdil Ünver · React &amp; Vite ile yapıldı
         </p>
       </div>
