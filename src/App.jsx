@@ -4,7 +4,7 @@ import {
   Menu, X, MapPin
 } from 'lucide-react';
 import { 
-  FaReact, FaPython, FaPhp, FaHtml5, FaGitAlt, FaGithub, FaDocker, FaLinkedin, FaCode, FaMicrochip
+  FaReact, FaPython, FaPhp, FaHtml5, FaGitAlt, FaGithub, FaDocker, FaLinkedin, FaCode
 } from 'react-icons/fa';
 import { 
   SiJavascript, SiTypescript, SiMysql, SiPostgresql, SiCplusplus, SiFlutter 
@@ -33,7 +33,7 @@ function Navbar() {
   return (
     <nav className={`glass-panel navbar${scrolled ? ' navbar-scrolled' : ''}`}>
       <div className="navbar-inner">
-        <a href="#hero" className="gradient-text nav-logo">İdil Unver.dev</a>
+        <a href="#hero" className="gradient-text nav-logo">İdilUnver.dev</a>
 
         {/* Desktop */}
         <div className="nav-links-desktop">
@@ -248,13 +248,6 @@ function Skills() {
       ]
     },
     {
-      title: "IoT & Embedded",
-      skills: [
-        { name: "ESP32", icon: <FaMicrochip color="#E7352C" /> },
-        { name: "Gömülü Sistemler", icon: <FaMicrochip color="#A8B9CC" /> },
-      ]
-    },
-    {
       title: "Tools & DevOps",
       skills: [
         { name: "Git", icon: <FaGitAlt color="#F05032" /> },
@@ -346,33 +339,33 @@ function Experience() {
   );
 }
 
-/* ───────── PROJECTS ───────── */
+/*/* ───────── PROJECTS ───────── */
 const projects = [
   {
-    title: 'Akıllı Sera Sistemi',
+    title: 'Kablosuz Sensör Ağlarına Dayalı Akıllı Sera İzleme ve Kontrol Sistemi',
     subtitle: 'Bitirme Projesi · 2026',
-    desc: 'ESP32 sensörleri, Python async backend ve Flutter (Mobil/Web) entegrasyonu ile otonom IoT izleme sistemi. Gemini Flash AI ile çevresel otomasyon, Fail-Safe mekanizması ve Digital Twin simülatörü içerir.',
+    desc: 'ESP32 sensörleri, Python async backend ve Flutter entegrasyonu ile otonom IoT izleme sistemi. Gemini Flash AI ile çevresel otomasyon ve Digital Twin simülatörü içerir.',
     tags: ['ESP32', 'Python', 'Flutter', 'Gemini AI', 'IoT'],
-    github: 'https://github.com/idilunver',
-    demo: null,
+    github: 'https://github.com/idilunver/smart-greenhouse',
+    demo: 'https://idilunver.github.io/smart-greenhouse/', // Canlı demo URL'in olduğunda buraya ekleyebilirsin: 'https://...'
     color: '#6366f1',
   },
   {
-    title: 'SmartStock',
-    subtitle: 'Envanter Yönetimi & Talep Tahmini · 2026',
-    desc: 'React/TypeScript ve Firebase ile gerçek zamanlı stok/STT yönetim sistemi. Pandas tabanlı ETL hattı ile veri işleme, PostgreSQL entegrasyonu ve hareketli ortalama ile stok tükenme öngörüsü.',
+    title: 'SmartStock — Stok Yönetimi',
+    subtitle: 'Envanter & Talep Tahmini · 2026',
+    desc: 'React/TypeScript ve Firebase ile gerçek zamanlı stok yönetim sistemi. Pandas ETL hattı, PostgreSQL entegrasyonu ve hareketli ortalama ile stok tükenme öngörüsü.',
     tags: ['React', 'TypeScript', 'Firebase', 'PostgreSQL', 'Pandas'],
-    github: 'https://github.com/idilunver',
-    demo: null,
+    github: 'https://github.com/idilunver/smart-stock',
+    demo: 'https://idilunver.github.io/smart-stock/',
     color: '#a855f7',
   },
   {
     title: 'NEXORA E-Ticaret Platformu',
-    subtitle: 'Full Stack · SVD Sistem Stajı · 2025',
-    desc: 'React 19, Material UI ve PHP/MySQL ile geliştirilmiş kapsamlı e-ticaret platformu. JSON tabanlı CMS, çoklu dil (TR/EN) desteği ve GitHub Pages CI/CD entegrasyonu içerir.',
-    tags: ['React 19', 'Material UI', 'PHP', 'MySQL', 'react-i18next'],
-    github: 'https://github.com/idilunver',
-    demo: null,
+    subtitle: 'Full Stack · Staj Projesi · 2025',
+    desc: 'React 19, Material UI ve PHP/MySQL ile geliştirilmiş e-ticaret platformu. JSON tabanlı CMS, TR/EN çoklu dil desteği ve GitHub Pages CI/CD entegrasyonu.',
+    tags: ['React 19', 'Material UI', 'PHP', 'MySQL', 'i18n'],
+    github: 'https://github.com/idilunver/shopping_website_project',
+    demo: 'https://idilunver.github.io/shopping_website_project/',
     color: '#06b6d4',
   },
 ];
@@ -381,33 +374,63 @@ function Projects() {
   return (
     <section id="projects" className="container">
       <h2 className="section-title gradient-text">Öne Çıkan Projeler</h2>
+
       <div className="projects-grid">
         {projects.map((p, idx) => (
-          <div key={idx} className="glass-panel card project-card">
-            <div className="project-banner" style={{ background: `linear-gradient(135deg, ${p.color}33, ${p.color}11)`, borderBottom: `1px solid ${p.color}44` }}>
-              <Code2 size={40} style={{ opacity: 0.25, color: p.color }} />
+          <div key={idx} className="glass-panel project-card">
+            {/* Kart Üst Renk Vurgusu */}
+            <div
+              className="project-banner"
+              style={{
+                background: `linear-gradient(135deg, ${p.color}25, ${p.color}05)`,
+                borderBottom: `1px solid ${p.color}33`,
+              }}
+            >
+              <Code2 size={36} style={{ opacity: 0.4, color: p.color }} />
+              <span className="project-subtitle-badge" style={{ borderColor: `${p.color}55`, color: p.color }}>
+                {p.subtitle}
+              </span>
             </div>
 
+            {/* Kart İçeriği */}
             <div className="project-body">
-              <div className="project-subtitle">{p.subtitle}</div>
               <h3 className="project-title">{p.title}</h3>
               <p className="project-desc">{p.desc}</p>
 
-              <div className="skills-grid" style={{ justifyContent: 'flex-start', marginBottom: '1.5rem' }}>
+              {/* Teknoloji Etiketleri */}
+              <div className="project-tags">
                 {p.tags.map(t => (
-                  <span key={t} className="skill-tag" style={{ fontSize: '0.78rem', padding: '0.2rem 0.6rem' }}>{t}</span>
+                  <span key={t} className="project-tag">
+                    {t}
+                  </span>
                 ))}
               </div>
 
-              <div style={{ display: 'flex', gap: '1rem' }}>
-                {p.demo && (
-                  <a href={p.demo} target="_blank" rel="noopener noreferrer" className="project-link primary">
-                    <ExternalLink size={15} /> Canlı Demo
+              {/* Çift Eylem Butonları */}
+              <div className="project-actions">
+                {p.demo ? (
+                  <a
+                    href={p.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-primary btn-sm"
+                  >
+                    <ExternalLink size={15} /> Live Demo
+                  </a>
+                ) : (
+                  <span className="badge-demo-off">Backend / System Project</span>
+                )}
+
+                {p.github && (
+                  <a
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-outline btn-sm"
+                  >
+                    <FaGithub size={15} /> GitHub
                   </a>
                 )}
-                <a href={p.github} target="_blank" rel="noopener noreferrer" className="project-link secondary">
-                  <FaGithub size={15} /> Kaynak Kod
-                </a>
               </div>
             </div>
           </div>
@@ -417,20 +440,55 @@ function Projects() {
   );
 }
 
+/* ───────── CONTACT ───────── */
+function Contact() {
+  const WEB3_KEY = import.meta.env.VITE_WEB3FORMS_KEY || '62992e41-a41a-400e-806c-2f5c59d50ab7';
+
+  return (
+    <section id="contact" className="container">
+      <h2 className="section-title gradient-text">İletişim</h2>
+
+      <div className="glass-panel contact-grid" style={{ maxWidth: 920, margin: '0 auto' }}>
+        <div style={{ flex: 1 }}>
+          <h3>Birlikte çalışalım</h3>
+          <p style={{ color: 'var(--text-muted)' }}>
+            Yeni projeler, staj veya işbirliği teklifleri için aşağıdaki formu doldurabilirsiniz.
+          </p>
+          <p style={{ marginTop: 12 }}>
+            Alternatif olarak doğrudan e-posta göndermek isterseniz:
+          </p>
+          <a href="mailto:unveridil@gmail.com" className="btn btn-outline" style={{ marginTop: 12 }}>
+            <Mail size={16} style={{ marginRight: 8 }} /> E-posta Gönder
+          </a>
+        </div>
+
+        <form action="https://api.web3forms.com/submit" method="POST" className="contact-form" style={{ flex: 1 }}>
+          <input type="hidden" name="access_key" value={WEB3_KEY} />
+
+          <label>İsim</label>
+          <input type="text" name="name" placeholder="Adınız" required />
+
+          <label style={{ marginTop: 8 }}>E-posta</label>
+          <input type="email" name="email" placeholder="E-posta adresiniz" required />
+
+          <label style={{ marginTop: 8 }}>Mesaj</label>
+          <textarea name="message" rows={6} placeholder="Mesajınız" required />
+
+          <div style={{ display: 'flex', gap: '0.75rem', marginTop: 12, justifyContent: 'flex-end' }}>
+            <button type="submit" className="btn btn-primary">Gönder</button>
+            <button type="reset" className="btn btn-outline">Temizle</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}
+
 /* ───────── FOOTER / CONTACT ───────── */
 function Footer() {
   return (
-    <footer id="contact" className="footer">
+    <footer className="footer">
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="section-title gradient-text" style={{ marginBottom: '1rem' }}>Birlikte Çalışalım</h2>
-        <p style={{ color: 'var(--text-muted)', maxWidth: '520px', margin: '0 auto 2.5rem auto', fontSize: '1.05rem' }}>
-          Yeni fırsatlara ve projelere her zaman açığım. Sorularınız veya proje fikirleriniz için bana ulaşabilirsiniz.
-        </p>
-
-        <a href="mailto:unveridil@gmail.com" className="btn btn-primary" style={{ marginBottom: '2.5rem', display: 'inline-flex' }}>
-          <Mail size={18} /> unveridil@gmail.com
-        </a>
-
         <div className="footer-socials">
           <a href="https://github.com/idilunver" target="_blank" rel="noopener noreferrer" className="glass-panel footer-icon" aria-label="GitHub">
             <FaGithub size={22} />
@@ -443,7 +501,7 @@ function Footer() {
           </a>
         </div>
 
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '3rem' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '2.5rem' }}>
           &copy; {new Date().getFullYear()} İdil Ünver · React &amp; Vite ile yapıldı
         </p>
       </div>
