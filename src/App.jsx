@@ -483,49 +483,7 @@ function Contact() {
   );
 }
 
-/* ───────── CONTACT ───────── */
-function Contact() {
-  const WEB3_KEY = import.meta.env.VITE_WEB3FORMS_KEY || '62992e41-a41a-400e-806c-2f5c59d50ab7';
-
-  return (
-    <section id="contact" className="container">
-      <h2 className="section-title gradient-text">İletişim</h2>
-
-      <div className="glass-panel contact-grid" style={{ maxWidth: 920, margin: '0 auto' }}>
-        <div style={{ flex: 1 }}>
-          <h3>Birlikte çalışalım</h3>
-          <p style={{ color: 'var(--text-muted)' }}>
-            Yeni projeler, staj veya işbirliği teklifleri için aşağıdaki formu doldurabilirsiniz.
-          </p>
-          <p style={{ marginTop: 12 }}>
-            Alternatif olarak doğrudan e-posta göndermek isterseniz:
-          </p>
-          <a href="mailto:unveridil@gmail.com" className="btn btn-outline" style={{ marginTop: 12 }}>
-            <Mail size={16} style={{ marginRight: 8 }} /> E-posta Gönder
-          </a>
-        </div>
-
-        <form action="https://api.web3forms.com/submit" method="POST" className="contact-form" style={{ flex: 1 }}>
-          <input type="hidden" name="access_key" value={WEB3_KEY} />
-
-          <label>İsim</label>
-          <input type="text" name="name" placeholder="Adınız" required />
-
-          <label style={{ marginTop: 8 }}>E-posta</label>
-          <input type="email" name="email" placeholder="E-posta adresiniz" required />
-
-          <label style={{ marginTop: 8 }}>Mesaj</label>
-          <textarea name="message" rows={6} placeholder="Mesajınız" required />
-
-          <div style={{ display: 'flex', gap: '0.75rem', marginTop: 12, justifyContent: 'flex-end' }}>
-            <button type="submit" className="btn btn-primary">Gönder</button>
-            <button type="reset" className="btn btn-outline">Temizle</button>
-          </div>
-        </form>
-      </div>
-    </section>
-  );
-}
+/* duplicate Contact removed; single Contact component retained above */
 
 /* ───────── FOOTER / CONTACT ───────── */
 function Footer() {
