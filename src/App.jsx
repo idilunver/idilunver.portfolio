@@ -448,6 +448,49 @@ function Contact() {
     <section id="contact" className="container">
       <h2 className="section-title gradient-text">İletişim</h2>
 
+      <div className="glass-panel contact-panel" style={{ maxWidth: 920, margin: '0 auto', display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
+        <div style={{ flex: 1 }}>
+          <h3 style={{ marginTop: 0 }}>Bana Ulaşın</h3>
+          <p style={{ color: 'var(--text-muted)' }}>
+            Proje teklifleri, staj başvuruları veya genel sorular için aşağıdaki formu kullanabilirsiniz.
+            Gönderimler Web3Forms aracılığıyla bana iletilecek; Web3Forms kontrol panelinden e-posta bildirimleri etkinleştirebilirsiniz.
+          </p>
+          <a href="mailto:unveridil@gmail.com" className="btn btn-outline" style={{ marginTop: 12 }}>
+            <Mail size={16} style={{ marginRight: 8 }} /> E-posta Gönder
+          </a>
+        </div>
+
+        <form action="https://api.web3forms.com/submit" method="POST" style={{ flex: 1 }}>
+          <input type="hidden" name="access_key" value={WEB3_KEY} />
+          <input type="hidden" name="subject" value="Portfolyo iletişim formu" />
+
+          <label style={{ display: 'block', marginBottom: 6 }}>Adınız</label>
+          <input name="name" type="text" required style={{ width: '100%' }} />
+
+          <label style={{ display: 'block', marginTop: 10, marginBottom: 6 }}>E-posta</label>
+          <input name="email" type="email" required style={{ width: '100%' }} />
+
+          <label style={{ display: 'block', marginTop: 10, marginBottom: 6 }}>Mesaj</label>
+          <textarea name="message" rows={6} required style={{ width: '100%' }} />
+
+          <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: 12 }}>
+            <button type="submit" className="btn btn-primary">Gönder</button>
+            <button type="reset" className="btn btn-outline">Temizle</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+}
+
+/* ───────── CONTACT ───────── */
+function Contact() {
+  const WEB3_KEY = import.meta.env.VITE_WEB3FORMS_KEY || '62992e41-a41a-400e-806c-2f5c59d50ab7';
+
+  return (
+    <section id="contact" className="container">
+      <h2 className="section-title gradient-text">İletişim</h2>
+
       <div className="glass-panel contact-grid" style={{ maxWidth: 920, margin: '0 auto' }}>
         <div style={{ flex: 1 }}>
           <h3>Birlikte çalışalım</h3>
@@ -519,6 +562,7 @@ export default function App() {
       <Skills />
       <Experience />
       <Projects />
+      <Contact />
       <Footer />
     </>
   );
