@@ -359,17 +359,77 @@ function Projects() {
 
 /* ───────── FOOTER / CONTACT ───────── */
 function Footer() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [error, setError] = useState('');
+
+  // Configure your Formspree endpoint in an .env file as VITE_FORMSPREE_ENDPOINT
+  // e.g. VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/yourFormId
+  const FORM_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || 'https://formspree.io/f/yourFormId';
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus('sending');
+    setError('');
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setStatus('success');
+        setName(''); setEmail(''); setMessage('');
+      } else {
+        setStatus('error');
+        setError(data?.error || 'Gönderim başarısız oldu. Lütfen daha sonra tekrar deneyin.');
+      }
+    } catch (err) {
+      setStatus('error');
+      setError(err.message || 'Ağ hatası.');
+    }
+  }
+
   return (
     <footer id="contact" className="footer">
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="section-title gradient-text" style={{ marginBottom: '1rem' }}>Birlikte Çalışalım</h2>
-        <p style={{ color: 'var(--text-muted)', maxWidth: '520px', margin: '0 auto 2.5rem auto', fontSize: '1.05rem' }}>
-          Yeni fırsatlara ve projelere her zaman açığım. Sorularınız veya proje fikirleriniz için bana ulaşabilirsiniz.
+        <p style={{ color: 'var(--text-muted)', maxWidth: '520px', margin: '0 auto 1.5rem auto', fontSize: '1.05rem' }}>
+          Yeni fırsatlara ve projelere her zaman açığım. Aşağıdaki formu doldurarak bana doğrudan mesaj gönderebilirsin.
         </p>
 
-        <a href="mailto:unveridil@gmail.com" className="btn btn-primary" style={{ marginBottom: '2.5rem', display: 'inline-flex' }}>
-          <Mail size={18} /> unveridil@gmail.com
-        </a>
+        <form className="contact-form glass-panel" onSubmit={handleSubmit} style={{ maxWidth: 720, margin: '0 auto 2rem auto', textAlign: 'left' }}>
+          <label style={{ display: 'block', marginBottom: 8 }}>İsim</label>
+          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+
+          <label style={{ display: 'block', marginTop: 12, marginBottom: 8 }}>E-posta</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+
+          <label style={{ display: 'block', marginTop: 12, marginBottom: 8 }}>Mesaj</label>
+          <textarea value={message} onChange={e => setMessage(e.target.value)} rows={6} required />
+
+          <div style={{ display: 'flex', gap: '0.75rem', marginTop: 12, alignItems: 'center' }}>
+            <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Gönderiliyor...' : 'Gönder'}
+            </button>
+            <a href="mailto:unveridil@gmail.com" className="btn btn-outline">
+              <Mail size={16} style={{ marginRight: 8 }} /> E-posta ile gönder
+            </a>
+          </div>
+
+          {status === 'success' && <div className="notice success" style={{ marginTop: 12 }}>Mesajın alındı — en kısa sürede döneceğim.</div>}
+          {status === 'error' && <div className="notice error" style={{ marginTop: 12 }}>{error}</div>}
+
+          <div style={{ marginTop: 14, color: 'var(--text-muted)', fontSize: '0.85rem' }}>
+            Not: Formspree kullanmak için <strong>VITE_FORMSPREE_ENDPOINT</strong> ortam değişkenine kendi Formspree endpoint'ini
+            (https://formspree.io/f/yourFormId) ekle. Alternatif olarak `FORM_ENDPOINT` değişkenini doğrudan koda yazabilirsin.
+          </div>
+        </form>
 
         <div className="footer-socials">
           <a href="https://github.com/idilunver" target="_blank" rel="noopener noreferrer" className="glass-panel footer-icon" aria-label="GitHub">
@@ -383,7 +443,7 @@ function Footer() {
           </a>
         </div>
 
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '3rem' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '2.5rem' }}>
           &copy; {new Date().getFullYear()} İdil Ünver · React &amp; Vite ile yapıldı
         </p>
       </div>
